@@ -1,7 +1,7 @@
 from flask import Flask
 # import json
-from flask import request
-from datetime import datetime
+# from flask import request
+# from datetime import datetime
 import psycopg2
 
 # Create an instance of the Flask class that is the WSGI application.
