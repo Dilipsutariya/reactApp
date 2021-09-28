@@ -82,6 +82,3 @@ def hello():
 #     cursor.execute(insert_records,datetime.strptime(request.args['eventDate'],'%d/%m/%y'),datetime.strptime(request.args['eventTime'],'%H:%M:%S'))
 #     conn.commit()
 #     return 'Inserted'
-
-if __name__ == '__main__':
-    app.run()
