@@ -2,3 +2,4 @@ datetime
 gunicorn
 flask
 json
+psycog2
