@@ -85,4 +85,8 @@ def setEventDates():
 
 if __name__ == '__main__':
     # Run the app server on localhost:4449
+    const PORT = process.env.PORT || '8080'
+    
+    app = express();
+    
     app.run()
