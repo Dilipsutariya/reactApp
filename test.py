@@ -82,7 +82,3 @@ def setEventDates():
     cursor.execute(insert_records,datetime.strptime(request.args['eventDate'],'%d/%m/%y'),datetime.strptime(request.args['eventTime'],'%H:%M:%S'))
     conn.commit()
     return 'Inserted'
-
-if __name__ == '__main__':
-    # Run the app server on localhost:4449
-    app.run('localhost', 4449)
