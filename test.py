@@ -16,7 +16,7 @@ app = Flask(__name__)
 conn = psycopg2.connect(host="ec2-44-198-146-224.compute-1.amazonaws.com",database="d1c086ui1sav3a",user="nyvkgchnncqjzs",password="8a26177c403ce5884fa51f5c2850fc23ab5fff5a0e90cf6f22d0c70023648714")
 
 @app.route('/')
-@app.route('/hello',, methods = ['GET'])
+@app.route('/hello', methods = ['GET'])
 def hello():
     data="123"
     return data
@@ -84,6 +84,4 @@ def setEventDates():
     return 'Inserted'
 
 if __name__ == '__main__':
-    # Run the app server on localhost:4449
-    
     app.run()
