@@ -1,5 +1,4 @@
 datetime
 gunicorn
 flask
-json
 psycopg2
