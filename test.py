@@ -13,15 +13,15 @@ app = Flask(__name__)
 # To add other resources, create functions that generate the page contents
 # and add decorators to define the appropriate resource locators for them.
 
-conn = psycopg2.connect(host="ec2-54-211-160-34.compute-1.amazonaws.com",database="d2dk8jrg0rkivc",user="fggzjksrvftylq",password="691b44a66cfc74d46d3a40e0faba3e00ae8cb6aafc1e3ed7a9b755de6ee5eb4c")
+conn = psycopg2.connect(host="ec2-44-198-146-224.compute-1.amazonaws.com",database="d1c086ui1sav3a",user="nyvkgchnncqjzs",password="8a26177c403ce5884fa51f5c2850fc23ab5fff5a0e90cf6f22d0c70023648714")
 
 @app.route('/')
-@app.route('/hello')
+@app.route('/hello',, methods = ['GET'])
 def hello():
     data="123"
     return data
 
-@app.route('/getUsers')
+@app.route('/getUsers', methods = ['GET'])
 def getUsers():
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM vw_users')
@@ -31,7 +31,7 @@ def getUsers():
         results.append(dict(zip(columns, row)))
     return json.dumps(results)
 
-@app.route('/getEventDates')
+@app.route('/getEventDates', methods = ['GET'])
 def getEventDates():
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM tbl_eventDates')
@@ -41,7 +41,7 @@ def getEventDates():
         results.append(dict(zip(columns, row)))
     return json.dumps(results)
 
-@app.route('/setEvents')
+@app.route('/setEvents', methods = ['POST'])
 def setEvents():
     cursor = conn.cursor()
     insert_records = '''INSERT INTO tbl_events (eventDate_id,user_id)
@@ -50,7 +50,7 @@ def setEvents():
     conn.commit()
     return 'Inserted'
 
-@app.route('/setUsers')
+@app.route('/setUsers', methods = ['POST'])
 def setUsers():
     cursor = conn.cursor()
     insert_records = '''INSERT INTO bt_interviews.dbo.tbl_users (Name)
@@ -64,7 +64,7 @@ def setUsers():
         results.append(dict(zip(columns, row)))
     return json.dumps(results)
 
-@app.route('/getEvents')
+@app.route('/getEvents', methods = ['GET'])
 def getEvents():
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM tbl_events')
@@ -74,7 +74,7 @@ def getEvents():
         results.append(dict(zip(columns, row)))
     return json.dumps(results)
 
-@app.route('/setEventDates', methods = ['Get'])
+@app.route('/setEventDates', methods = ['POST'])
 def setEventDates():
     cursor = conn.cursor()
     insert_records = '''INSERT INTO tbl_eventDates (eventDate,eventTime)
@@ -82,3 +82,7 @@ def setEventDates():
     cursor.execute(insert_records,datetime.strptime(request.args['eventDate'],'%d/%m/%y'),datetime.strptime(request.args['eventTime'],'%H:%M:%S'))
     conn.commit()
     return 'Inserted'
+
+if __name__ == '__main__':
+    # Run the app server on localhost:4449
+    app.run()
